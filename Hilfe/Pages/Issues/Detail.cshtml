@@ -1,0 +1,26 @@
+﻿@page "{id:int}"
+@model Hilfe.Pages.Issues.DetailModel
+@using Hilfe.Extensions;
+@using Humanizer;
+@{
+}
+
+<div class="mt-5">
+    @if(Model.Issue == null)
+    {
+        <div class="alert alert-warning" role="alert"> 
+            Issue not found
+        </div>
+    }
+    else
+    {
+        <h3>@Model.Issue.Title</h3>
+        <div class="mb-2">
+            <span class="badge bg-info">@Model.Issue.IssueType</span>
+            <span class="@Model.Issue.Priority.ToCssClass()">@Model.Issue.Priority</span>
+            <span class="badge bg-info">@Model.Issue.Created.Humanize(utcDate: false)</span>
+        </div>
+        <p>@Model.Issue.Description</p>
+        <button id="resolveButton" type="submit">Resolve</button>
+    }
+</div>
